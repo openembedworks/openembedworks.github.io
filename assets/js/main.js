@@ -120,6 +120,16 @@
     showSkeletons(4);
 
     try {
+      // file:// pages have a null origin in modern browsers; fetch can be blocked.
+      if (window.location.protocol === 'file:') {
+        const embedded = getEmbeddedToolsData();
+        if (embedded) {
+          renderTools(embedded);
+          return;
+        }
+        throw new Error('No embedded tools data found for file:// mode.');
+      }
+
       const resp = await fetch('./tools.json');
       if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
 
@@ -132,6 +142,15 @@
       renderTools(data.tools);
     } catch (err) {
       console.error('[tools] Failed to load tools.json:', err);
+
+      // If fetch fails (offline/CORS), try embedded JSON as a graceful fallback.
+      const embedded = getEmbeddedToolsData();
+      if (embedded) {
+        console.info('[tools] Loaded embedded fallback data.');
+        renderTools(embedded);
+        return;
+      }
+
       showError('Could not load tools. Please try refreshing the page.');
     }
   }
@@ -168,6 +187,23 @@
     return '#';
   }
 
+  /**
+   * Read fallback tools data embedded in index.html.
+   * @returns {Array|null}
+   */
+  function getEmbeddedToolsData() {
+    const node = document.getElementById('tools-data');
+    if (!node) return null;
+
+    try {
+      const data = JSON.parse(node.textContent || '{}');
+      if (Array.isArray(data.tools)) return data.tools;
+    } catch (err) {
+      console.warn('[tools] Invalid embedded tools data:', err);
+    }
+    return null;
+  }
+
   /* ---- Bootstrap ---- */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadTools);
@@ -179,11 +215,13 @@
    * The service worker (sw.js at the root) caches key assets for offline use.
    * Registration is deferred until after the page loads to avoid blocking.
    */
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && window.isSecureContext && window.location.protocol !== 'file:') {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
         .then(reg => console.info('[sw] Registered, scope:', reg.scope))
         .catch(err => console.warn('[sw] Registration failed:', err));
     });
+  } else {
+    console.info('[sw] Skipped: service workers require a secure http/https context.');
   }
 })();
