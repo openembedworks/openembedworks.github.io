@@ -1,0 +1,101 @@
+{
+  "_comment": "Add new tools here. Each tool needs: name, category, description, url. Category must match one of: systems-linux, embedded-automotive, networking-protocols, development-tools",
+  "tools": [
+    {
+      "name": "Linux Kernel Explorer",
+      "category": "systems-linux",
+      "description": "Browse and search Linux kernel source code with cross-references and documentation links.",
+      "url": "#"
+    },
+    {
+      "name": "Syscall Reference",
+      "category": "systems-linux",
+      "description": "Interactive Linux syscall reference with argument details, return values, and examples.",
+      "url": "#"
+    },
+    {
+      "name": "ELF Inspector",
+      "category": "systems-linux",
+      "description": "Parse and visualize ELF binary headers, sections, and symbol tables in the browser.",
+      "url": "#"
+    },
+    {
+      "name": "Memory Map Viewer",
+      "category": "systems-linux",
+      "description": "Visualize /proc/maps and linker script memory layouts for running processes.",
+      "url": "#"
+    },
+    {
+      "name": "CAN Bus Analyzer",
+      "category": "embedded-automotive",
+      "description": "Decode and analyze CAN bus frames with DBC file support and signal plotting.",
+      "url": "#"
+    },
+    {
+      "name": "UDS Protocol Tool",
+      "category": "embedded-automotive",
+      "description": "Build, send, and decode UDS (ISO 14229) diagnostic messages interactively.",
+      "url": "#"
+    },
+    {
+      "name": "AUTOSAR Config Editor",
+      "category": "embedded-automotive",
+      "description": "Edit and validate AUTOSAR ARXML configuration files with schema-aware suggestions.",
+      "url": "#"
+    },
+    {
+      "name": "Embedded Bit-field Calculator",
+      "category": "embedded-automotive",
+      "description": "Define register bit-fields, compute masks, and generate C macros automatically.",
+      "url": "#"
+    },
+    {
+      "name": "Wireshark Filter Builder",
+      "category": "networking-protocols",
+      "description": "Build complex Wireshark/tshark display filters with syntax highlighting and validation.",
+      "url": "#"
+    },
+    {
+      "name": "IP Subnet Calculator",
+      "category": "networking-protocols",
+      "description": "Calculate subnets, CIDR notation, broadcast addresses, and host ranges instantly.",
+      "url": "#"
+    },
+    {
+      "name": "MQTT Explorer",
+      "category": "networking-protocols",
+      "description": "Connect to MQTT brokers, subscribe to topics, and visualize message payloads.",
+      "url": "#"
+    },
+    {
+      "name": "Protocol Buffer Decoder",
+      "category": "networking-protocols",
+      "description": "Decode raw protobuf bytes using a .proto schema, with field-level inspection.",
+      "url": "#"
+    },
+    {
+      "name": "Makefile Generator",
+      "category": "development-tools",
+      "description": "Generate cross-platform Makefiles for C/C++ projects with configurable flags and targets.",
+      "url": "#"
+    },
+    {
+      "name": "GDB Command Reference",
+      "category": "development-tools",
+      "description": "Searchable GDB command reference with examples, tips, and pretty-printer snippets.",
+      "url": "#"
+    },
+    {
+      "name": "CMake Configurator",
+      "category": "development-tools",
+      "description": "Interactively compose CMakeLists.txt files with target definitions and package discovery.",
+      "url": "#"
+    },
+    {
+      "name": "Compiler Explorer Lite",
+      "category": "development-tools",
+      "description": "Compile small C/C++ snippets and inspect assembly output, flags, and optimization results.",
+      "url": "#"
+    }
+  ]
+}

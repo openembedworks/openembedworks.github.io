@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenEmbedWorks – Browser-Native Engineering Tools</title>
+  <meta name="description" content="A hub of free, browser-native engineering tools for systems programming, embedded, automotive, networking, and software development." />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#1e293b" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       - Add new top-level pages here as <li> items.
+       - Set aria-current="page" on the active link.
+  ============================================================ -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+      <!-- Brand / logo -->
+      <a href="./" class="nav-brand" aria-label="OpenEmbedWorks home">
+        <!-- Circuit-board icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="7" width="20" height="14" rx="2"/>
+          <path d="M16 2v5M8 2v5M2 11h20"/>
+          <circle cx="8"  cy="15" r="1" fill="currentColor"/>
+          <circle cx="12" cy="15" r="1" fill="currentColor"/>
+          <circle cx="16" cy="15" r="1" fill="currentColor"/>
+        </svg>
+        <span>OpenEmbedWorks</span>
+      </a>
+
+      <!-- Navigation links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#tools"  aria-current="page">Tools</a></li>
+        <li><a href="./docs">Docs</a></li>
+        <li><a href="./about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <header class="hero" role="banner">
+    <div class="container">
+      <div class="hero-badge">
+        <!-- Zap icon -->
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        Browser-Native · No Install Required
+      </div>
+
+      <h1>Engineering tools that<br/><span>run in your browser</span></h1>
+
+      <p>
+        Open-source, zero-install utilities for systems programmers, embedded
+        engineers, and networking professionals. Works online and offline.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#tools" class="btn btn-primary">
+          <!-- Grid icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+          </svg>
+          Browse Tools
+        </a>
+        <a href="https://github.com/openembedworks" class="btn btn-outline"
+           target="_blank" rel="noopener noreferrer">
+          <!-- GitHub icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482
+              0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463
+              -.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831
+              .092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683
+              -.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59
+              0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699
+              1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0
+              1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT – TOOL SECTIONS
+       id="tools" is the anchor for the "Browse Tools" button.
+
+       HOW TO ADD A NEW SECTION:
+         1. Copy one of the <section> blocks below.
+         2. Give it a new unique id (e.g. id="security").
+         3. Update the section-header text and icon.
+         4. Add a matching grid div: &lt;div class="tools-grid" id="grid-{category}"&gt;
+         5. Add the new category id to CATEGORY_GRIDS in assets/js/main.js.
+         6. Add tools with that category in tools.json.
+  ============================================================ -->
+  <main id="tools" class="tools-sections">
+    <div class="container">
+
+      <!-- 1. Systems & Linux -->
+      <section class="category-section" aria-labelledby="heading-systems-linux">
+        <div class="section-header">
+          <div class="section-icon" aria-hidden="true">
+            <!-- Terminal icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+          </div>
+          <div>
+            <h2 id="heading-systems-linux">Systems &amp; Linux</h2>
+            <p>Kernel internals, ELF binaries, and low-level system programming utilities</p>
+          </div>
+        </div>
+        <!-- Tool cards are injected here by assets/js/main.js -->
+        <div class="tools-grid" id="grid-systems-linux" role="list" aria-label="Systems and Linux tools"></div>
+      </section>
+
+      <!-- 2. Embedded & Automotive -->
+      <section class="category-section" aria-labelledby="heading-embedded-automotive">
+        <div class="section-header">
+          <div class="section-icon" aria-hidden="true">
+            <!-- Cpu icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2"/>
+              <rect x="9" y="9" width="6" height="6"/>
+              <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+            </svg>
+          </div>
+          <div>
+            <h2 id="heading-embedded-automotive">Embedded &amp; Automotive</h2>
+            <p>CAN bus, UDS diagnostics, AUTOSAR, and microcontroller development helpers</p>
+          </div>
+        </div>
+        <!-- Tool cards are injected here by assets/js/main.js -->
+        <div class="tools-grid" id="grid-embedded-automotive" role="list" aria-label="Embedded and Automotive tools"></div>
+      </section>
+
+      <!-- 3. Networking & Protocols -->
+      <section class="category-section" aria-labelledby="heading-networking-protocols">
+        <div class="section-header">
+          <div class="section-icon" aria-hidden="true">
+            <!-- Network icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+              <path d="M12 7v5M12 12l-5.2 5.2M12 12l5.2 5.2"/>
+            </svg>
+          </div>
+          <div>
+            <h2 id="heading-networking-protocols">Networking &amp; Protocols</h2>
+            <p>Packet analysis, subnetting, MQTT, Protobuf, and protocol inspection tools</p>
+          </div>
+        </div>
+        <!-- Tool cards are injected here by assets/js/main.js -->
+        <div class="tools-grid" id="grid-networking-protocols" role="list" aria-label="Networking and Protocols tools"></div>
+      </section>
+
+      <!-- 4. Development Tools -->
+      <section class="category-section" aria-labelledby="heading-development-tools">
+        <div class="section-header">
+          <div class="section-icon" aria-hidden="true">
+            <!-- Code icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <div>
+            <h2 id="heading-development-tools">Development Tools</h2>
+            <p>Build systems, debuggers, compilers, and everyday developer productivity helpers</p>
+          </div>
+        </div>
+        <!-- Tool cards are injected here by assets/js/main.js -->
+        <div class="tools-grid" id="grid-development-tools" role="list" aria-label="Development tools"></div>
+      </section>
+
+    </div><!-- /.container -->
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">OpenEmbedWorks</span>
+
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> OpenEmbedWorks. Open source under MIT.
+        </p>
+
+        <ul class="footer-links" role="list">
+          <li><a href="https://github.com/openembedworks" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="./docs">Docs</a></li>
+          <li><a href="./about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Embedded fallback data for local file:// usage where fetch to JSON is blocked -->
+  <script id="tools-data" type="application/json">
+    {
+      "tools": [
+        {
+          "name": "Linux Kernel Explorer",
+          "category": "systems-linux",
+          "description": "Browse and search Linux kernel source code with cross-references and documentation links.",
+          "url": "#"
+        },
+        {
+          "name": "Syscall Reference",
+          "category": "systems-linux",
+          "description": "Interactive Linux syscall reference with argument details, return values, and examples.",
+          "url": "#"
+        },
+        {
+          "name": "ELF Inspector",
+          "category": "systems-linux",
+          "description": "Parse and visualize ELF binary headers, sections, and symbol tables in the browser.",
+          "url": "#"
+        },
+        {
+          "name": "Memory Map Viewer",
+          "category": "systems-linux",
+          "description": "Visualize /proc/maps and linker script memory layouts for running processes.",
+          "url": "#"
+        },
+        {
+          "name": "CAN Bus Analyzer",
+          "category": "embedded-automotive",
+          "description": "Decode and analyze CAN bus frames with DBC file support and signal plotting.",
+          "url": "#"
+        },
+        {
+          "name": "UDS Protocol Tool",
+          "category": "embedded-automotive",
+          "description": "Build, send, and decode UDS (ISO 14229) diagnostic messages interactively.",
+          "url": "#"
+        },
+        {
+          "name": "AUTOSAR Config Editor",
+          "category": "embedded-automotive",
+          "description": "Edit and validate AUTOSAR ARXML configuration files with schema-aware suggestions.",
+          "url": "#"
+        },
+        {
+          "name": "Embedded Bit-field Calculator",
+          "category": "embedded-automotive",
+          "description": "Define register bit-fields, compute masks, and generate C macros automatically.",
+          "url": "#"
+        },
+        {
+          "name": "Wireshark Filter Builder",
+          "category": "networking-protocols",
+          "description": "Build complex Wireshark/tshark display filters with syntax highlighting and validation.",
+          "url": "#"
+        },
+        {
+          "name": "IP Subnet Calculator",
+          "category": "networking-protocols",
+          "description": "Calculate subnets, CIDR notation, broadcast addresses, and host ranges instantly.",
+          "url": "#"
+        },
+        {
+          "name": "MQTT Explorer",
+          "category": "networking-protocols",
+          "description": "Connect to MQTT brokers, subscribe to topics, and visualize message payloads.",
+          "url": "#"
+        },
+        {
+          "name": "Protocol Buffer Decoder",
+          "category": "networking-protocols",
+          "description": "Decode raw protobuf bytes using a .proto schema, with field-level inspection.",
+          "url": "#"
+        },
+        {
+          "name": "Makefile Generator",
+          "category": "development-tools",
+          "description": "Generate cross-platform Makefiles for C/C++ projects with configurable flags and targets.",
+          "url": "#"
+        },
+        {
+          "name": "GDB Command Reference",
+          "category": "development-tools",
+          "description": "Searchable GDB command reference with examples, tips, and pretty-printer snippets.",
+          "url": "#"
+        },
+        {
+          "name": "CMake Configurator",
+          "category": "development-tools",
+          "description": "Interactively compose CMakeLists.txt files with target definitions and package discovery.",
+          "url": "#"
+        },
+        {
+          "name": "Compiler Explorer Lite",
+          "category": "development-tools",
+          "description": "Compile small C/C++ snippets and inspect assembly output, flags, and optimization results.",
+          "url": "#"
+        }
+      ]
+    }
+  </script>
+
+  <!-- Inline script: set current year in footer (no extra request needed) -->
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Main script: loads tools.json and renders cards, registers service worker -->
+  <script src="assets/js/main.js" defer></script>
+
+</body>
+</html>
