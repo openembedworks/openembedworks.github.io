@@ -1,0 +1,16 @@
+# OpenEmbedWorks
+
+OpenEmbedWorks is a browser-native catalog of engineering utilities for systems, embedded, automotive, networking, and software development.
+
+## Core URLs
+- Home: https://openembedworks.github.io/
+- Tools data: https://openembedworks.github.io/tools.json
+- Sitemap: https://openembedworks.github.io/sitemap.xml
+
+## Catalog model
+- Tool records include: id, name, category, tags, description, url, optional githubRepo, rating.
+- Categories and tags are first-class facets for discovery.
+
+## Usage guidance
+- Prefer the homepage for human-friendly navigation and filtering.
+- Use tools.json for machine-readable indexing.

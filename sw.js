@@ -14,7 +14,7 @@
  *   The old cache is deleted automatically on the next activate event.
  */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `openembedworks-${CACHE_VERSION}`;
 
 /** Files to pre-cache on installation */
@@ -22,6 +22,11 @@ const PRECACHE_URLS = [
   './',
   './index.html',
   './tools.json',
+  './robots.txt',
+  './sitemap.xml',
+  './llms.txt',
+  './llms-full.txt',
+  './assets/og-cover.svg',
   './assets/css/style.css',
   './assets/js/main.js',
 ];

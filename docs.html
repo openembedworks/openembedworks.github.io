@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation | OpenEmbedWorks</title>
+  <meta name="description" content="Learn how to use OpenEmbedWorks, discover tools, and contribute to the community." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://openembedworks.github.io/docs.html" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <meta name="theme-color" content="#1e293b" />
+
+  <style>
+    .docs-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+    }
+
+    .docs-sidebar {
+      grid-column: 1;
+    }
+
+    .docs-content {
+      grid-column: 2;
+    }
+
+    .docs-section {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .docs-section:last-child {
+      border-bottom: none;
+    }
+
+    .docs-section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+    }
+
+    .docs-section h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: .8rem;
+      color: #0f3f69;
+    }
+
+    .docs-section p,
+    .docs-section li {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      margin-bottom: .8rem;
+    }
+
+    .docs-section ul,
+    .docs-section ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .docs-section li {
+      margin-bottom: .5rem;
+    }
+
+    .code-block {
+      background: #f8fbff;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .9rem;
+      color: #0f3f69;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-card {
+      background: #f8fbff;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+
+    .feature-card h4 {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+      color: #0f6cbd;
+    }
+
+    .feature-card p {
+      font-size: .9rem;
+      margin-bottom: 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .toc {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 1.5rem;
+      position: sticky;
+      top: 20px;
+    }
+
+    .toc h3 {
+      font-size: 1rem;
+      margin-top: 0;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .toc li {
+      margin-bottom: .6rem;
+    }
+
+    .toc a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: .95rem;
+      display: block;
+      padding: .3rem 0;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover {
+      color: #0d4f8a;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1024px) {
+      .docs-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .docs-sidebar {
+        grid-column: 1;
+      }
+
+      .docs-content {
+        grid-column: 1;
+      }
+
+      .toc {
+        position: static;
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .docs-section h2 {
+        font-size: 1.4rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .code-block {
+        font-size: .85rem;
+      }
+
+      .docs-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .toc {
+        padding: 1rem;
+      }
+
+      .toc h3 {
+        font-size: .95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="./" class="nav-brand" aria-label="OpenEmbedWorks home">
+        <img src="./assets/oew-logo.svg" class="nav-logo" width="32" height="32" alt="" aria-hidden="true" />
+        <span>Open Embed Works</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="./#tools">Tools</a></li>
+        <li><a href="./docs.html" aria-current="page">Docs</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="tools-sections" style="padding: 3rem 0 4rem;">
+    <div class="container docs-container">
+      <aside class="docs-sidebar">
+        <div class="toc">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#search-filter">Search & Filter</a></li>
+            <li><a href="#offline">Offline Usage</a></li>
+            <li><a href="#schema">Tool Schema</a></li>
+            <li><a href="#contributing">Contributing Tools</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="docs-content">
+        <a href="./#tools" class="back-link">← Back to tools</a>
+
+        <h1>Documentation</h1>
+        <p style="font-size: 1.1rem; color: var(--color-muted); margin-bottom: 2rem;">
+          Learn how to use OpenEmbedWorks, discover tools, and contribute to the community.
+        </p>
+
+        <!-- Getting Started -->
+      <section class="docs-section" id="getting-started">
+        <h2>Getting Started</h2>
+        <p>
+          OpenEmbedWorks is a curated catalog of browser-native engineering tools for systems programmers, embedded engineers, and networking professionals. All tools run directly in your browser—no installation required.
+        </p>
+
+        <h3>First Time?</h3>
+        <ol>
+          <li>Visit the <a href="./#tools">Tools catalog</a></li>
+          <li>Browse by <strong>Categories</strong> (Systems, Embedded, Networking, Development)</li>
+          <li>Refine results with <strong>Tags</strong> (e.g., Binary Analysis, Automotive, Scheduling)</li>
+          <li>Search for specific tool names or keywords</li>
+          <li>Click <strong>Open</strong> to launch any tool in your browser</li>
+        </ol>
+
+        <p>
+          Each tool includes a description, rating, GitHub repository link (if available), and links to subcategories for quick discovery.
+        </p>
+      </section>
+
+      <!-- Features -->
+      <section class="docs-section" id="features">
+        <h2>Features</h2>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>🔍 Advanced Search</h4>
+            <p>Search by tool name, tags, or description. Results update instantly as you type.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>📊 Sortable Table</h4>
+            <p>Click column headers to sort by Tool name, Category, Rating, or GitHub stars. Toggle ascending/descending by clicking again.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🏷️ Tag Filtering</h4>
+            <p>Select one or multiple tags (e.g., Automotive, RTOS, Scheduling) to refine the catalog.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>⭐ Ratings & Stars</h4>
+            <p>Tools are rated 1–5 stars. GitHub star counts are fetched and cached to reflect community adoption.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🎨 View Modes</h4>
+            <p>Toggle between Table (compact, sortable rows) and Tile (visual card grid) views.</p>
+          </div>
+
+          <div class="feature-card">
+            <h4>🔗 URL State Persistence</h4>
+            <p>Filters, search, sort, and view mode are saved in the URL. Share filtered views with colleagues.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search & Filter -->
+      <section class="docs-section" id="search-filter">
+        <h2>Search & Filter Guide</h2>
+
+        <h3>By Category</h3>
+        <p>
+          Top-level categories group tools by engineering domain. Select any category button to filter. Categories are:
+        </p>
+        <ul>
+          <li><strong>Systems and Linux</strong> – ELF inspection, hex editing, memory mapping</li>
+          <li><strong>Embedded and Automotive</strong> – CAN, UDS, AUTOSAR, RTOS scheduling</li>
+          <li><strong>Networking and Protocols</strong> – gPTP time sync, packet capture analysis</li>
+          <li><strong>Development Tools</strong> – Compilers, productivity utilities</li>
+        </ul>
+
+        <h3>By Tags (Subcategories)</h3>
+        <p>
+          Tags provide fine-grained discovery within a category. Each tool may have multiple tags. Select any tag to filter results within the current category.
+        </p>
+
+        <h3>Search Box</h3>
+        <p>
+          Type any keyword to search across tool names, descriptions, and tags. Search is case-insensitive and matches partial words. Results update live.
+        </p>
+
+        <h3>Sort Options</h3>
+        <p>
+          In Table view, click any column header to sort:
+        </p>
+        <ul>
+          <li><strong>Tool</strong> – Alphabetical by tool name</li>
+          <li><strong>Rating</strong> – User rating (high to low, or vice versa)</li>
+          <li><strong>GitHub stars</strong> – Community adoption metric</li>
+        </ul>
+
+        <p>
+          Click the same header again to reverse the sort direction. The active sort column is highlighted in blue.
+        </p>
+
+        <h3>Clear Filters</h3>
+        <p>
+          The "Clear filters" button next to the search box resets all selections and returns to the full catalog.
+        </p>
+      </section>
+
+      <!-- Offline Usage -->
+      <section class="docs-section" id="offline">
+        <h2>Offline Usage</h2>
+
+        <h3>How It Works</h3>
+        <p>
+          OpenEmbedWorks uses a <strong>Service Worker</strong> to cache the catalog on your first visit. After that, the entire site works offline—no internet required.
+        </p>
+
+        <h3>Requirements</h3>
+        <ul>
+          <li>Browser must support Service Workers (all modern browsers do)</li>
+          <li>Site must be served over <code>https://</code> or <code>localhost</code></li>
+          <li>First load must be online to cache assets</li>
+        </ul>
+
+        <h3>What's Cached</h3>
+        <ul>
+          <li>HTML, CSS, and JavaScript</li>
+          <li>Complete tool catalog (tools.json)</li>
+          <li>SEO metadata and assets</li>
+        </ul>
+
+        <h3>What's Not Cached</h3>
+        <ul>
+          <li>GitHub star counts (fetched only when online; falls back to seed values)</li>
+          <li>External tool links (you can still click them; they open if online)</li>
+        </ul>
+
+        <h3>Cache Updates</h3>
+        <p>
+          When new versions are deployed, the Service Worker automatically clears the old cache and pre-caches the new version on your next visit.
+        </p>
+      </section>
+
+      <!-- Tool Schema -->
+      <section class="docs-section" id="schema">
+        <h2>Tool Data Schema</h2>
+
+        <p>
+          All tool information is stored in a structured JSON format. If you're contributing or integrating OpenEmbedWorks, here's the schema (v2.0):
+        </p>
+
+        <div class="code-block">
+{
+  "_schemaVersion": "2.0",
+  "categories": [
+    { "id": "systems-linux", "label": "Systems and Linux", "order": 1 }
+  ],
+  "tags": [
+    { "id": "binary-analysis", "label": "Binary Analysis" }
+  ],
+  "tools": [
+    {
+      "id": "hex-lens",
+      "name": "Hex Lens",
+      "category": "systems-linux",
+      "tags": ["binary-analysis", "linux"],
+      "description": "Browser-native hex editor...",
+      "url": "https://...",
+      "githubRepo": "owner/repo",
+      "rating": { "value": 4.5, "count": 18 }
+    }
+  ]
+}
+        </div>
+
+        <h3>Field Reference</h3>
+        <ul>
+          <li><strong>id</strong> – Unique identifier (lowercase, hyphens)</li>
+          <li><strong>name</strong> – Display name</li>
+          <li><strong>category</strong> – Must reference a category id</li>
+          <li><strong>tags</strong> – Array of tag ids</li>
+          <li><strong>description</strong> – 1–2 sentence summary</li>
+          <li><strong>url</strong> – Direct link to tool or demo</li>
+          <li><strong>githubRepo</strong> – Optional: "owner/repo" for star metrics</li>
+          <li><strong>rating</strong> – {"value": 0–5, "count": number of ratings}</li>
+        </ul>
+      </section>
+
+      <!-- Contributing -->
+      <section class="docs-section" id="contributing">
+        <h2>Contributing Tools</h2>
+
+        <p>
+          OpenEmbedWorks is a community-driven project. We welcome contributions from engineers who have built tools for the embedded, systems, and networking communities.
+        </p>
+
+        <h3>How to Add a Tool</h3>
+        <ol>
+          <li>
+            <strong>Fork the repository</strong>
+            <br/>
+            <a href="https://github.com/openembedworks/openembedworks.github.io" target="_blank">github.com/openembedworks/openembedworks.github.io</a>
+          </li>
+
+          <li>
+            <strong>Edit tools.json</strong>
+            <br/>
+            Add your tool entry using the schema above. Ensure all required fields are populated.
+          </li>
+
+          <li>
+            <strong>Validate your changes</strong>
+            <br/>
+            Ensure the JSON is valid (no syntax errors). Test locally if possible.
+          </li>
+
+          <li>
+            <strong>Submit a Pull Request</strong>
+            <br/>
+            Include a description of your tool and why it belongs in OpenEmbedWorks. Link to the tool repository if available.
+          </li>
+
+          <li>
+            <strong>Review & merge</strong>
+            <br/>
+            Maintainers will review and merge your PR. The catalog updates automatically.
+          </li>
+        </ol>
+
+        <h3>Contribution Guidelines</h3>
+        <ul>
+          <li><strong>Tool must run in a browser</strong> (no native app installation)</li>
+          <li><strong>Works online and offline</strong> – or at least functions fully without network for core features</li>
+          <li><strong>Open source</strong> – Preferred, but not strictly required</li>
+          <li><strong>Clear description</strong> – 1–2 sentences summarizing the tool's purpose</li>
+          <li><strong>Accurate category & tags</strong> – Must match existing taxonomy or propose new ones</li>
+          <li><strong>Active maintenance</strong> – We favor tools that are actively developed or maintained</li>
+        </ul>
+
+        <h3>Questions?</h3>
+        <p>
+          Open an issue in the <a href="https://github.com/openembedworks/openembedworks.github.io" target="_blank">GitHub repository</a> or reach out to the community.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section class="docs-section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>Q: Do tools require any installation?</h3>
+        <p>
+          <strong>A:</strong> No. All tools are web-based and run directly in your browser. No downloads, installs, or dependencies.
+        </p>
+
+        <h3>Q: Can I use tools offline?</h3>
+        <p>
+          <strong>A:</strong> Yes, once you've visited OpenEmbedWorks online, the catalog and tools are cached. You can then access them offline.
+        </p>
+
+        <h3>Q: Is my data private?</h3>
+        <p>
+          <strong>A:</strong> All processing happens client-side in your browser. No data is sent to servers unless a specific tool requires it. See the tool's documentation for privacy details.
+        </p>
+
+        <h3>Q: Can I contribute a tool I built?</h3>
+        <p>
+          <strong>A:</strong> Yes! See the <a href="#contributing">Contributing Tools</a> section above. We'd love to have your tool in the catalog.
+        </p>
+
+        <h3>Q: How do I report a bug or request a feature?</h3>
+        <p>
+          <strong>A:</strong> Open an issue on <a href="https://github.com/openembedworks/openembedworks.github.io" target="_blank">GitHub</a>. Please provide as much detail as possible.
+        </p>
+
+        <h3>Q: Can I fork or modify OpenEmbedWorks?</h3>
+        <p>
+          <strong>A:</strong> Yes. OpenEmbedWorks is open source. Check the repository for the license and guidelines.
+        </p>
+
+        <h3>Q: How are tools rated?</h3>
+        <p>
+          <strong>A:</strong> Ratings are contributed by the community. Higher ratings indicate tools that engineers find useful and reliable. GitHub star counts are also shown as a secondary adoption metric.
+        </p>
+      </section>
+
+      <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+        <p style="color: var(--color-muted); font-size: .95rem;">
+          Have more questions? <a href="https://github.com/openembedworks/openembedworks.github.io/discussions" target="_blank">Start a discussion on GitHub</a> or open an <a href="https://github.com/openembedworks/openembedworks.github.io/issues" target="_blank">issue</a>.
+        </p>
+      </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">OpenEmbedWorks</span>
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> OpenEmbedWorks. Open source project.
+        </p>
+        <ul class="footer-links" role="list">
+          <li><a href="https://github.com/openembedworks" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="./docs.html">Docs</a></li>
+          <li><a href="./about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

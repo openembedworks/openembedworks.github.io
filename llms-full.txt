@@ -1,0 +1,35 @@
+# OpenEmbedWorks (Expanded Agent Context)
+
+OpenEmbedWorks is an open engineering tools catalog optimized for browser-native workflows.
+
+## Project purpose
+The site helps engineers discover and launch web-based utilities without installation. The catalog is designed for scale using faceted search and tag-first grouping.
+
+## Audience
+- Systems and Linux engineers
+- Embedded and automotive developers
+- Networking and protocol engineers
+- General software developers
+
+## Data contract
+Primary source file: https://openembedworks.github.io/tools.json
+
+Schema v2 highlights:
+- _schemaVersion
+- categories[]: id, label, description, order
+- tags[]: id, label
+- tools[]: id, name, category, tags[], description, url, optional githubRepo, rating { value, count, source }
+
+## Discovery and ranking
+- Tools can be grouped by tags and filtered by category.
+- Ratings are seeded in data and may be enriched from GitHub star counts when online.
+
+## Crawlable assets
+- Home: https://openembedworks.github.io/
+- Sitemap: https://openembedworks.github.io/sitemap.xml
+- Robots: https://openembedworks.github.io/robots.txt
+- Data feed: https://openembedworks.github.io/tools.json
+
+## Notes
+- Some tool URLs may be placeholders while tools are being published.
+- The catalog page remains functional in file:// mode with embedded fallback data.

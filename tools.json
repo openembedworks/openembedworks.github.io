@@ -1,65 +1,141 @@
 {
-  "_comment": "Add new tools here. Each tool needs: name, category, description, url. Category must match one of: systems-linux, embedded-automotive, networking-protocols, development-tools",
+  "_schemaVersion": "2.0",
+  "_metadata": {
+    "lastUpdated": "2026-08-02",
+    "description": "OpenEmbedWorks tool catalog with faceted search metadata"
+  },
+  "categories": [
+    {
+      "id": "systems-linux",
+      "label": "Systems and Linux",
+      "description": "Kernel internals, ELF binaries, and low-level system utilities",
+      "order": 1
+    },
+    {
+      "id": "embedded-automotive",
+      "label": "Embedded and Automotive",
+      "description": "CAN, diagnostics, AUTOSAR, and timing analysis",
+      "order": 2
+    },
+    {
+      "id": "networking-protocols",
+      "label": "Networking and Protocols",
+      "description": "Packet analysis, time sync, and messaging protocols",
+      "order": 3
+    },
+    {
+      "id": "development-tools",
+      "label": "Development Tools",
+      "description": "Compilers, build workflows, and developer productivity",
+      "order": 4
+    }
+  ],
+  "tags": [
+    { "id": "binary-analysis", "label": "Binary Analysis" },
+    { "id": "linux", "label": "Linux" },
+    { "id": "diagnostics", "label": "Diagnostics" },
+    { "id": "automotive", "label": "Automotive" },
+    { "id": "rtos", "label": "RTOS" },
+    { "id": "scheduling", "label": "Scheduling" },
+    { "id": "timesync", "label": "Time Sync" },
+    { "id": "packet", "label": "Packet Analysis" },
+    { "id": "compiler", "label": "Compiler" },
+    { "id": "productivity", "label": "Productivity" }
+  ],
   "tools": [
     {
+      "id": "hex-lens",
       "name": "Hex Lens",
       "category": "systems-linux",
-      "description": "Browser-native hex editor to inspect, compare, edit, cut and save modified binaries",
-      "url": "#"
+      "tags": ["binary-analysis", "linux"],
+      "description": "Browser-native hex editor to inspect, compare, edit, and save modified binaries.",
+      "url": "#",
+      "githubRepo": "openembedworks/openembedworks.github.io",
+      "rating": { "value": 4.5, "count": 18, "source": "seed" }
     },
     {
+      "id": "elf-inspector",
       "name": "ELF Inspector",
       "category": "systems-linux",
+      "tags": ["binary-analysis", "linux"],
       "description": "Parse and visualize ELF binary headers, sections, and symbol tables in the browser.",
-      "url": "#"
+      "url": "#",
+      "githubRepo": "openembedworks/ElfFileAnalyzer",
+      "rating": { "value": 4.6, "count": 22, "source": "seed" }
     },
     {
+      "id": "memory-map-viewer",
       "name": "Memory Map Viewer",
       "category": "systems-linux",
-      "description": "Visualize /proc/maps and linker script memory layouts for running processes.",
-      "url": "#"
+      "tags": ["linux", "binary-analysis"],
+      "description": "Visualize process memory maps and linker layout slices for runtime debugging.",
+      "url": "#",
+      "rating": { "value": 4.1, "count": 9, "source": "seed" }
     },
     {
+      "id": "can-bus-analyzer",
       "name": "CAN Bus Analyzer",
       "category": "embedded-automotive",
-      "description": "Decode and analyze CAN bus frames with DBC file support and signal plotting.",
-      "url": "#"
+      "tags": ["automotive", "diagnostics"],
+      "description": "Decode and inspect CAN bus frames with signal-level views and quick filtering.",
+      "url": "#",
+      "rating": { "value": 4.4, "count": 14, "source": "seed" }
     },
     {
+      "id": "uds-protocol-tool",
       "name": "UDS Protocol Tool",
       "category": "embedded-automotive",
-      "description": "Build, send, and decode UDS (ISO 14229) diagnostic messages interactively.",
-      "url": "#"
+      "tags": ["automotive", "diagnostics"],
+      "description": "Build and decode UDS diagnostic messages for service-level troubleshooting.",
+      "url": "#",
+      "rating": { "value": 4.2, "count": 11, "source": "seed" }
     },
     {
+      "id": "autosar-config-editor",
       "name": "AUTOSAR Config Editor",
       "category": "embedded-automotive",
-      "description": "Edit and validate AUTOSAR ARXML configuration files with schema-aware suggestions.",
-      "url": "#"
+      "tags": ["automotive", "productivity"],
+      "description": "Edit AUTOSAR ARXML-like config data with structure-aware guidance.",
+      "url": "#",
+      "rating": { "value": 4.0, "count": 7, "source": "seed" }
     },
     {
+      "id": "chrono-lens",
       "name": "Chrono Lens",
       "category": "embedded-automotive",
-      "description": "Simulates an RTOS scheduler, showing how tasks & ISRs run over time. You can edit offsets, periods, priorities and runtimes to explore timing, preemption and execution behaviur in embedded systems",
-      "url": "#"
+      "tags": ["rtos", "scheduling"],
+      "description": "Simulate RTOS scheduling to explore offsets, periods, priorities, preemption, and timing.",
+      "url": "#",
+      "githubRepo": "openembedworks/ChronoLens",
+      "rating": { "value": 4.7, "count": 25, "source": "seed" }
     },
     {
-      "name": "gPTP Analyzer/Simulator",
+      "id": "gptp-analyzer-simulator",
+      "name": "gPTP Analyzer and Simulator",
       "category": "networking-protocols",
-      "description": "Visualizes and simulates IEEE802.1AS time-sync behavior",
-      "url": "#"
+      "tags": ["timesync", "packet"],
+      "description": "Visualize and simulate IEEE 802.1AS time-sync behavior across nodes.",
+      "url": "#",
+      "githubRepo": "openembedworks/timesync_sim",
+      "rating": { "value": 4.8, "count": 27, "source": "seed" }
     },
     {
+      "id": "pcap-lens",
       "name": "PCAP Lens",
       "category": "networking-protocols",
-      "description": "Build complex Wireshark/tshark display filters with syntax highlighting and validation.",
-      "url": "#"
+      "tags": ["packet", "diagnostics"],
+      "description": "Inspect packet captures with filter scaffolding and quick protocol pivots.",
+      "url": "#",
+      "rating": { "value": 4.3, "count": 16, "source": "seed" }
     },
     {
+      "id": "compiler-explorer-lite",
       "name": "Compiler Explorer Lite",
       "category": "development-tools",
-      "description": "Compile small C/C++ snippets and inspect assembly output, flags, and optimization results.",
-      "url": "#"
+      "tags": ["compiler", "productivity"],
+      "description": "Compile small C/C++ snippets and inspect assembly output and optimization effects.",
+      "url": "#",
+      "rating": { "value": 4.4, "count": 20, "source": "seed" }
     }
   ]
 }

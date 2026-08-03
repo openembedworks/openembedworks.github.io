@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Open Embed Works logo</title>
+  <desc id="desc">A browser window combined with an embedded chip and code brackets.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f6cbd"/>
+      <stop offset="100%" stop-color="#0d4f8a"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="6" y="6" width="116" height="116" rx="24" fill="url(#bg)"/>
+
+  <rect x="24" y="28" width="80" height="62" rx="10" fill="#eaf4ff" opacity="0.98"/>
+  <rect x="24" y="28" width="80" height="14" rx="10" fill="#c7ddff"/>
+  <circle cx="35" cy="35" r="2.6" fill="#0f6cbd"/>
+  <circle cx="43" cy="35" r="2.6" fill="#2f8ed6"/>
+  <circle cx="51" cy="35" r="2.6" fill="#76b6ea"/>
+
+  <path d="M45 58l-8 6 8 6" stroke="#0d4f8a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M83 58l8 6-8 6" stroke="#0d4f8a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M66 53l-4 22" stroke="#2f8ed6" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+
+  <rect x="46" y="84" width="36" height="22" rx="6" fill="#10243e"/>
+  <rect x="52" y="90" width="24" height="10" rx="2" fill="#76b6ea"/>
+
+  <rect x="44" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="50" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="56" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="62" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="68" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="74" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="80" y="81" width="2" height="6" rx="1" fill="#76b6ea"/>
+
+  <rect x="44" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="50" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="56" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="62" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="68" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="74" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+  <rect x="80" y="103" width="2" height="6" rx="1" fill="#76b6ea"/>
+</svg>

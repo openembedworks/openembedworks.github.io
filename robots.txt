@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Allow LLM-oriented crawlers.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://openembedworks.github.io/sitemap.xml
