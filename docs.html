@@ -242,6 +242,7 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#search-filter">Search & Filter</a></li>
             <li><a href="#offline">Offline Usage</a></li>
+            <li><a href="#tools-architecture">Tools Architecture</a></li>
             <li><a href="#schema">Tool Schema</a></li>
             <li><a href="#contributing">Contributing Tools</a></li>
             <li><a href="#faq">FAQ</a></li>
@@ -392,6 +393,57 @@
         <h3>Cache Updates</h3>
         <p>
           When new versions are deployed, the Service Worker automatically clears the old cache and pre-caches the new version on your next visit.
+        </p>
+      </section>
+
+      <!-- Tools Architecture -->
+      <section class="docs-section" id="tools-architecture">
+        <h2>Tools Architecture</h2>
+
+        <p>
+          Most OpenEmbedWorks tools share a common browser-native architecture pattern: they run entirely on the client, process user data locally, and provide interactive visual analysis without requiring server-side compute.
+        </p>
+
+        <h3>Generic Tool Architecture Layers</h3>
+        <ul>
+          <li><strong>Input layer</strong> – File upload, JSON paste, form inputs, or scenario parameters entered directly by the user.</li>
+          <li><strong>Parser and validation layer</strong> – Format-aware parsers decode inputs and validate structure, ranges, and constraints.</li>
+          <li><strong>Core analysis and simulation layer</strong> – Tool-specific algorithms run in-memory (decode, transform, simulate, measure, or compare).</li>
+          <li><strong>Visualization layer</strong> – Tables, timelines, charts, and contextual inspectors render intermediate and final results.</li>
+          <li><strong>Export layer</strong> – Users can copy results, download generated artifacts, or save transformed outputs.</li>
+          <li><strong>Offline and caching layer</strong> – Static assets are cached so the tool remains usable in low-connectivity environments.</li>
+        </ul>
+
+        <h3>Typical Runtime Flow</h3>
+        <ol>
+          <li>Load tool shell (HTML/CSS/JS) and initialize default state.</li>
+          <li>Accept user input (file, text payload, parameters, or presets).</li>
+          <li>Parse and validate input; surface actionable validation errors when needed.</li>
+          <li>Run tool logic (analysis pipeline or simulation engine) in-memory.</li>
+          <li>Render synchronized visual outputs and derived metrics.</li>
+          <li>Allow iterative adjustments and instant recomputation.</li>
+          <li>Export or share output artifacts where supported.</li>
+        </ol>
+
+        <h3>Capabilities This Architecture Enables</h3>
+        <ul>
+          <li><strong>Low-latency interaction</strong> – Immediate feedback while tuning filters, parameters, offsets, or simulation settings.</li>
+          <li><strong>Deterministic behavior</strong> – Reproducible analysis from the same input and configuration.</li>
+          <li><strong>Deep introspection</strong> – Drill into raw structures, decoded fields, and timeline details.</li>
+          <li><strong>What-if simulation</strong> – Evaluate alternative conditions without changing production systems.</li>
+          <li><strong>Portable workflows</strong> – Run in any modern browser without installing native dependencies.</li>
+        </ul>
+
+        <h3>Reference Examples</h3>
+        <ul>
+          <li><strong>Hex Lens</strong> – Input: binary buffers. Core: byte-level parse and edit operations. Visualization: structured hex/ASCII views and diffs. Output: modified binary export.</li>
+          <li><strong>gPTP / STBM Time Synchronization Visualizer</strong> – Input: sync parameters or packet-derived timing data. Core: time-sync calculation and offset/drift analysis. Visualization: time alignment and synchronization behavior across nodes.</li>
+          <li><strong>ChronoLens (RTOS Scheduling and Timing Analyzer)</strong> – Input: task periods, priorities, offsets, ISR events. Core: scheduling simulation with preemption and latency accounting. Visualization: execution timeline, deadline behavior, and timing metrics.</li>
+        </ul>
+
+        <h3>Security and Privacy Model</h3>
+        <p>
+          The default model is local processing in the browser: user inputs are parsed and analyzed client-side, which minimizes data exposure and supports security-sensitive engineering workflows. Network calls are optional and generally limited to static asset delivery or non-critical metadata.
         </p>
       </section>
 

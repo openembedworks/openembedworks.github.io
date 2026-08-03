@@ -510,6 +510,28 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
 }
 
+.tool-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tool-title-link:hover {
+  text-decoration: underline;
+}
+
+.tool-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+}
+
+.tool-action-muted {
+  color: var(--color-muted);
+  font-size: .84rem;
+  font-weight: 600;
+}
+
 .tools-tiles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
