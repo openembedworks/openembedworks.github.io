@@ -240,10 +240,11 @@
     {
       "_schemaVersion": "2.0",
       "categories": [
-        { "id": "systems-linux", "label": "Systems and Linux", "order": 1 },
-        { "id": "embedded-automotive", "label": "Embedded and Automotive", "order": 2 },
-        { "id": "networking-protocols", "label": "Networking and Protocols", "order": 3 },
-        { "id": "development-tools", "label": "Development Tools", "order": 4 }
+        { "id": "system-runtime", "label": "System & Runtime", "order": 1 },
+        { "id": "networking-protocols", "label": "Networking & Protocols", "order": 2 },
+        { "id": "security", "label": "Security", "order": 3 },
+        { "id": "build-binary-tools", "label": "Build & Binary Tools", "order": 4 },
+        { "id": "ai-ml", "label": "AI/ ML", "order": 5 }
       ],
       "tags": [
         { "id": "binary-analysis", "label": "Binary Analysis" },
@@ -261,7 +262,7 @@
         {
           "id": "hex-lens",
           "name": "Hex Lens",
-          "category": "systems-linux",
+          "category": "build-binary-tools",
           "tags": ["binary-analysis", "linux"],
           "description": "Browser-native hex editor to inspect, compare, edit, and save modified binaries.",
           "url": "https://openembedworks.github.io/hexlens/",
@@ -269,19 +270,19 @@
           "rating": { "value": 4.5, "count": 18, "source": "seed" }
         },
         {
-          "id": "elf-inspector",
-          "name": "ELF Inspector",
-          "category": "systems-linux",
+          "id": "elf-lens",
+          "name": "ELF Lens",
+          "category": "build-binary-tools",
           "tags": ["binary-analysis", "linux"],
           "description": "Parse and visualize ELF binary headers, sections, and symbol tables in the browser.",
-          "url": "#",
-          "githubRepo": "openembedworks/ElfFileAnalyzer",
+          "url": "https://openembedworks.github.io/elflens/",
+          "githubRepo": "openembedworks/elflens",
           "rating": { "value": 4.6, "count": 22, "source": "seed" }
         },
         {
           "id": "memory-map-viewer",
           "name": "Memory Map Viewer",
-          "category": "systems-linux",
+          "category": "build-binary-tools",
           "tags": ["linux", "binary-analysis"],
           "description": "Visualize process memory maps and linker layout slices for runtime debugging.",
           "url": "#",
@@ -290,7 +291,7 @@
         {
           "id": "can-bus-analyzer",
           "name": "CAN Bus Analyzer",
-          "category": "embedded-automotive",
+          "category": "networking-protocols",
           "tags": ["automotive", "diagnostics"],
           "description": "Decode and inspect CAN bus frames with signal-level views and quick filtering.",
           "url": "#",
@@ -299,7 +300,7 @@
         {
           "id": "uds-protocol-tool",
           "name": "UDS Protocol Tool",
-          "category": "embedded-automotive",
+          "category": "networking-protocols",
           "tags": ["automotive", "diagnostics"],
           "description": "Build and decode UDS diagnostic messages for service-level troubleshooting.",
           "url": "#",
@@ -308,7 +309,7 @@
         {
           "id": "autosar-config-editor",
           "name": "AUTOSAR Config Editor",
-          "category": "embedded-automotive",
+          "category": "system-runtime",
           "tags": ["automotive", "productivity"],
           "description": "Edit AUTOSAR ARXML-like config data with structure-aware guidance.",
           "url": "#",
@@ -317,7 +318,7 @@
         {
           "id": "chrono-lens",
           "name": "Chrono Lens",
-          "category": "embedded-automotive",
+          "category": "system-runtime",
           "tags": ["rtos", "scheduling"],
           "description": "Simulate RTOS scheduling to explore offsets, periods, priorities, preemption, and timing.",
           "url": "https://openembedworks.github.io/chronolens/",
@@ -346,7 +347,7 @@
         {
           "id": "compiler-explorer-lite",
           "name": "Compiler Explorer Lite",
-          "category": "development-tools",
+          "category": "build-binary-tools",
           "tags": ["compiler", "productivity"],
           "description": "Compile small C/C++ snippets and inspect assembly output and optimization effects.",
           "url": "#",
