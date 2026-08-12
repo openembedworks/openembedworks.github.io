@@ -12,7 +12,10 @@ OpenEmbedWorks is a browser-native engineering tools catalog with faceted discov
 
 ## Data Source
 
-The catalog is powered by `tools.json` (schema `2.0`).
+The catalog is powered by `tools-data.js` (schema `1.0`), a script that assigns a
+structured JSON object to `window.OEW_TOOLS_DATA`. Loading it as a `<script>` (rather
+than fetching JSON) means the catalog works the same over `https://`, from a local
+dev server, or via `file://`.
 
 ### Top-level keys
 

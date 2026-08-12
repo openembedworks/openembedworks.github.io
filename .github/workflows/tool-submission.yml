@@ -1,0 +1,130 @@
+name: Tool Submission
+
+# Triggered when someone opens or edits a "Request New Tool" issue-form submission.
+# Pipeline: rule-based validation -> AI review (Copilot) -> open PR for a
+# maintainer to review and merge. Never commits directly to main.
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: tool-submission-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  process:
+    if: contains(github.event.issue.labels.*.name, 'tool-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure labels exist
+        run: |
+          for spec in \
+            "tool-submission:1d76db:New tool catalog submission" \
+            "needs-changes:d93f0b:Automated validation failed" \
+            "needs-manual-review:fbca04:AI review flagged this submission" \
+            "pending-review:0e8a16:Awaiting maintainer PR review" \
+            "automated-submission:5319e7:Opened automatically by the tool-submission workflow"
+          do
+            name="${spec%%:*}"
+            rest="${spec#*:}"
+            color="${rest%%:*}"
+            desc="${rest#*:}"
+            gh label create "$name" --color "$color" --description "$desc" --force
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Parse and validate submission
+        id: process
+        run: node .github/scripts/process-submission.mjs
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+
+      - name: Comment - rule validation failed
+        if: steps.process.outputs.valid == 'false'
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body-file "${{ steps.process.outputs.comment_file }}"
+          gh issue edit "$ISSUE_NUMBER" --add-label needs-changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+
+      - name: Install Copilot CLI
+        if: steps.process.outputs.valid == 'true'
+        run: npm install -g @github/copilot
+
+      - name: AI review
+        id: ai
+        if: steps.process.outputs.valid == 'true'
+        uses: actions/ai-inference@v1
+        continue-on-error: true
+        with:
+          prompt-file: ${{ steps.process.outputs.ai_prompt_file }}
+          system-prompt: >-
+            You are a strict security and quality reviewer for a community tool catalog.
+            Respond with ONLY compact JSON: {"approve": boolean, "reasons": string[]}.
+            No markdown fences, no extra text.
+          model: gpt-4.1
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+
+      - name: Finalize submission
+        id: finalize
+        if: steps.process.outputs.valid == 'true'
+        run: node .github/scripts/finalize-submission.mjs
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PROPOSED_TOOL_FILE: ${{ steps.process.outputs.proposed_tool_file }}
+          AI_RESPONSE: ${{ steps.ai.outputs.response }}
+
+      - name: Comment - AI review flagged or failed
+        if: steps.process.outputs.valid == 'true' && steps.finalize.outputs.proceed == 'false'
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body-file "${{ steps.finalize.outputs.comment_file }}"
+          gh issue edit "$ISSUE_NUMBER" --add-label needs-manual-review
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+
+      - name: Commit change to a new branch
+        if: steps.finalize.outputs.proceed == 'true'
+        run: |
+          git config user.name "openembedworks-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add tools-data.js sw.js
+          git commit -m "Request new tool: ${{ steps.process.outputs.tool_name }} (closes #${{ github.event.issue.number }})"
+          git push origin "$BRANCH" --force
+        env:
+          BRANCH: ${{ steps.finalize.outputs.branch }}
+
+      - name: Open pull request
+        if: steps.finalize.outputs.proceed == 'true'
+        run: |
+          PR_URL=$(gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "${{ steps.finalize.outputs.pr_title }}" \
+            --body-file "${{ steps.finalize.outputs.pr_body_file }}" \
+            --reviewer rudupa \
+            --label automated-submission)
+          gh issue comment "$ISSUE_NUMBER" --body-file "${{ steps.finalize.outputs.comment_file }}"
+          gh issue comment "$ISSUE_NUMBER" --body "Pull request: $PR_URL"
+          gh issue edit "$ISSUE_NUMBER" --add-label pending-review --remove-label tool-submission
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          BRANCH: ${{ steps.finalize.outputs.branch }}

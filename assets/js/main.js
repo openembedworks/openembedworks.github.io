@@ -64,10 +64,10 @@
 
   function normalizeData(raw) {
     if (!raw || !Array.isArray(raw.tools)) {
-      throw new Error('tools.json must include a tools array.');
+      throw new Error('tools-data.js must include a tools array.');
     }
 
-    const hasSchema = raw._schemaVersion === '2.0';
+    const hasSchema = raw._schemaVersion === '1.0';
 
     if (hasSchema) {
       return {
@@ -520,28 +520,13 @@
   }
 
   async function loadCatalogData() {
-    if (window.location.protocol === 'file:') {
-      const embedded = getEmbeddedToolsData();
-      if (!embedded) throw new Error('No embedded tools data found for file mode.');
-      return embedded;
+    // tools-data.js is loaded via a <script> tag before this file runs, so
+    // window.OEW_TOOLS_DATA is available identically whether the page was
+    // opened over https://, from a local dev server, or via file://.
+    if (!window.OEW_TOOLS_DATA) {
+      throw new Error('tools-data.js did not load or did not set window.OEW_TOOLS_DATA.');
     }
-
-    const response = await fetch('./tools.json');
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    return response.json();
-  }
-
-  function getEmbeddedToolsData() {
-    const node = document.getElementById('tools-data');
-    if (!node) return null;
-    try {
-      return JSON.parse(node.textContent || '{}');
-    } catch (error) {
-      console.warn('[tools] Invalid embedded tools data.', error);
-      return null;
-    }
+    return window.OEW_TOOLS_DATA;
   }
 
   async function hydrateGithubStars() {

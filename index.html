@@ -127,6 +127,15 @@
           </svg>
           Browse Tools
         </a>
+        <a href="https://github.com/openembedworks/openembedworks.github.io/issues/new?template=add-tool.yml"
+           class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+          <!-- Plus icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Request New Tool
+        </a>
         <a href="https://github.com/openembedworks" class="btn btn-outline"
            target="_blank" rel="noopener noreferrer">
           <!-- GitHub icon -->
@@ -140,7 +149,7 @@
               1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0
               1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
           </svg>
-          View on GitHub
+          View GitHub Org
         </a>
       </div>
     </div>
@@ -235,134 +244,15 @@
     </div>
   </footer>
 
-  <!-- Embedded fallback data for local file:// usage where fetch to JSON is blocked -->
-  <script id="tools-data" type="application/json">
-    {
-      "_schemaVersion": "2.0",
-      "categories": [
-        { "id": "system-runtime", "label": "System & Runtime", "order": 1 },
-        { "id": "networking-protocols", "label": "Networking & Protocols", "order": 2 },
-        { "id": "security", "label": "Security", "order": 3 },
-        { "id": "build-binary-tools", "label": "Build & Binary Tools", "order": 4 },
-        { "id": "ai-ml", "label": "AI/ ML", "order": 5 }
-      ],
-      "tags": [
-        { "id": "binary-analysis", "label": "Binary Analysis" },
-        { "id": "linux", "label": "Linux" },
-        { "id": "diagnostics", "label": "Diagnostics" },
-        { "id": "automotive", "label": "Automotive" },
-        { "id": "rtos", "label": "RTOS" },
-        { "id": "scheduling", "label": "Scheduling" },
-        { "id": "timesync", "label": "Time Sync" },
-        { "id": "packet", "label": "Packet Analysis" },
-        { "id": "compiler", "label": "Compiler" },
-        { "id": "productivity", "label": "Productivity" }
-      ],
-      "tools": [
-        {
-          "id": "hex-lens",
-          "name": "Hex Lens",
-          "category": "build-binary-tools",
-          "tags": ["binary-analysis", "linux"],
-          "description": "Browser-native hex editor to inspect, compare, edit, and save modified binaries.",
-          "url": "https://openembedworks.github.io/hexlens/",
-          "githubRepo": "openembedworks/hexlens",
-          "rating": { "value": 4.5, "count": 18, "source": "seed" }
-        },
-        {
-          "id": "elf-lens",
-          "name": "ELF Lens",
-          "category": "build-binary-tools",
-          "tags": ["binary-analysis", "linux"],
-          "description": "Parse and visualize ELF binary headers, sections, and symbol tables in the browser.",
-          "url": "https://openembedworks.github.io/elflens/",
-          "githubRepo": "openembedworks/elflens",
-          "rating": { "value": 4.6, "count": 22, "source": "seed" }
-        },
-        {
-          "id": "memory-map-viewer",
-          "name": "Memory Map Viewer",
-          "category": "build-binary-tools",
-          "tags": ["linux", "binary-analysis"],
-          "description": "Visualize process memory maps and linker layout slices for runtime debugging.",
-          "url": "#",
-          "rating": { "value": 4.1, "count": 9, "source": "seed" }
-        },
-        {
-          "id": "can-bus-analyzer",
-          "name": "CAN Bus Analyzer",
-          "category": "networking-protocols",
-          "tags": ["automotive", "diagnostics"],
-          "description": "Decode and inspect CAN bus frames with signal-level views and quick filtering.",
-          "url": "#",
-          "rating": { "value": 4.4, "count": 14, "source": "seed" }
-        },
-        {
-          "id": "uds-protocol-tool",
-          "name": "UDS Protocol Tool",
-          "category": "networking-protocols",
-          "tags": ["automotive", "diagnostics"],
-          "description": "Build and decode UDS diagnostic messages for service-level troubleshooting.",
-          "url": "#",
-          "rating": { "value": 4.2, "count": 11, "source": "seed" }
-        },
-        {
-          "id": "autosar-config-editor",
-          "name": "AUTOSAR Config Editor",
-          "category": "system-runtime",
-          "tags": ["automotive", "productivity"],
-          "description": "Edit AUTOSAR ARXML-like config data with structure-aware guidance.",
-          "url": "#",
-          "rating": { "value": 4.0, "count": 7, "source": "seed" }
-        },
-        {
-          "id": "chrono-lens",
-          "name": "Chrono Lens",
-          "category": "system-runtime",
-          "tags": ["rtos", "scheduling"],
-          "description": "Simulate RTOS scheduling to explore offsets, periods, priorities, preemption, and timing.",
-          "url": "https://openembedworks.github.io/chronolens/",
-          "githubRepo": "openembedworks/chronolens",
-          "rating": { "value": 4.7, "count": 25, "source": "seed" }
-        },
-        {
-          "id": "gptp-analyzer-simulator",
-          "name": "gPTP Analyzer and Simulator",
-          "category": "networking-protocols",
-          "tags": ["timesync", "packet"],
-          "description": "Visualize and simulate IEEE 802.1AS time-sync behavior across nodes.",
-          "url": "https://openembedworks.github.io/gptplens/",
-          "githubRepo": "openembedworks/gptplens",
-          "rating": { "value": 4.8, "count": 27, "source": "seed" }
-        },
-        {
-          "id": "pcap-lens",
-          "name": "PCAP Lens",
-          "category": "networking-protocols",
-          "tags": ["packet", "diagnostics"],
-          "description": "Inspect packet captures with filter scaffolding and quick protocol pivots.",
-          "url": "#",
-          "rating": { "value": 4.3, "count": 16, "source": "seed" }
-        },
-        {
-          "id": "compiler-explorer-lite",
-          "name": "Compiler Explorer Lite",
-          "category": "build-binary-tools",
-          "tags": ["compiler", "productivity"],
-          "description": "Compile small C/C++ snippets and inspect assembly output and optimization effects.",
-          "url": "#",
-          "rating": { "value": 4.4, "count": 20, "source": "seed" }
-        }
-      ]
-    }
-  </script>
-
   <!-- Inline script: set current year in footer (no extra request needed) -->
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 
-  <!-- Main script: loads tools.json and renders cards, registers service worker -->
+  <!-- Tool catalog data: single source of truth, works over https:// and file:// -->
+  <script src="tools-data.js" defer></script>
+
+  <!-- Main script: reads window.OEW_TOOLS_DATA and renders cards, registers service worker -->
   <script src="assets/js/main.js" defer></script>
 
 </body>

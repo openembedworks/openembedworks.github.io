@@ -1,0 +1,6 @@
+# Require review from the maintainer for automated catalog changes.
+# NOTE: This is only enforced if branch protection has "Require review from
+# Code Owners" enabled for the `main` branch (Settings > Branches > main).
+/tools-data.js @rudupa
+/sw.js @rudupa
+/.github/ @rudupa

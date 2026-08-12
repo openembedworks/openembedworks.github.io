@@ -1,5 +1,21 @@
-{
-  "_schemaVersion": "2.0",
+/**
+ * OpenEmbedWorks tool catalog data.
+ *
+ * This is the single source of truth for the site's tool catalog, replacing
+ * the former tools.json. Loading it as a <script> (instead of fetching JSON)
+ * means the catalog works identically whether the site is opened over
+ * https://, from a local dev server, or by double-clicking index.html
+ * (file://) — script tags aren't subject to the fetch/CORS restrictions
+ * that block XHR/fetch requests against file:// URLs.
+ *
+ * Edited by hand for manual changes, and by
+ * .github/scripts/finalize-submission.mjs for automated tool submissions
+ * (that script parses the JSON object below out of this file and rewrites
+ * it in place, so keep the `window.OEW_TOOLS_DATA = { ... };` wrapper exactly
+ * as-is).
+ */
+window.OEW_TOOLS_DATA = {
+  "_schemaVersion": "1.0",
   "_metadata": {
     "lastUpdated": "2026-08-02",
     "description": "OpenEmbedWorks tool catalog with faceted search metadata"
@@ -55,8 +71,8 @@
       "category": "build-binary-tools",
       "tags": ["binary-analysis", "linux"],
       "description": "Browser-native hex editor to inspect, compare, edit, and save modified binaries.",
-      "url": "https://openembedworks.github.io/hexlens/",
-      "githubRepo": "openembedworks/hexlens",
+      "url": "https://rudupa.github.io/hexlens/",
+      "githubRepo": "rudupa/hexlens",
       "rating": { "value": 4.5, "count": 18, "source": "seed" }
     },
     {
@@ -65,17 +81,18 @@
       "category": "build-binary-tools",
       "tags": ["binary-analysis", "linux"],
       "description": "Parse and visualize ELF binary headers, sections, and symbol tables in the browser.",
-      "url": "https://openembedworks.github.io/elflens/",
-      "githubRepo": "openembedworks/elflens",
+      "url": "https://rudupa.github.io/elflens/",
+      "githubRepo": "rudupa/elflens",
       "rating": { "value": 4.6, "count": 22, "source": "seed" }
     },
     {
-      "id": "memory-map-viewer",
-      "name": "Memory Map Viewer",
+      "id": "memory-map-lens",
+      "name": "Memory Map Lens",
       "category": "build-binary-tools",
       "tags": ["linux", "binary-analysis"],
       "description": "Visualize process memory maps and linker layout slices for runtime debugging.",
-      "url": "#",
+      "url": "https://rudupa.github.io/memmaplens/",
+      "githubRepo": "rudupa/memmaplens",
       "rating": { "value": 4.1, "count": 9, "source": "seed" }
     },
     {
@@ -111,8 +128,8 @@
       "category": "system-runtime",
       "tags": ["rtos", "scheduling"],
       "description": "Simulate RTOS scheduling to explore offsets, periods, priorities, preemption, and timing.",
-      "url": "https://openembedworks.github.io/chronolens/",
-      "githubRepo": "openembedworks/chronolens",
+      "url": "https://rudupa.github.io/chronolens/",
+      "githubRepo": "rudupa/chronolens",
       "rating": { "value": 4.7, "count": 25, "source": "seed" }
     },
     {
@@ -121,8 +138,8 @@
       "category": "networking-protocols",
       "tags": ["timesync", "packet"],
       "description": "Visualize and simulate IEEE 802.1AS time-sync behavior across nodes.",
-      "url": "https://openembedworks.github.io/gptplens/",
-      "githubRepo": "openembedworks/gptplens",
+      "url": "https://rudupa.github.io/EthTimeSync_Sim/",
+      "githubRepo": "rudupa/gptp-simulator",
       "rating": { "value": 4.8, "count": 27, "source": "seed" }
     },
     {
@@ -144,4 +161,4 @@
       "rating": { "value": 4.4, "count": 20, "source": "seed" }
     }
   ]
-}
+};

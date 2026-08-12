@@ -380,7 +380,7 @@
         <h3>What's Cached</h3>
         <ul>
           <li>HTML, CSS, and JavaScript</li>
-          <li>Complete tool catalog (tools.json)</li>
+          <li>Complete tool catalog (tools-data.js)</li>
           <li>SEO metadata and assets</li>
         </ul>
 
@@ -452,12 +452,16 @@
         <h2>Tool Data Schema</h2>
 
         <p>
-          All tool information is stored in a structured JSON format. If you're contributing or integrating OpenEmbedWorks, here's the schema (v2.0):
+          All tool information is stored in <code>tools-data.js</code>, a small script that assigns
+          a structured JSON object to <code>window.OEW_TOOLS_DATA</code>. Loading it as a script
+          (rather than fetching JSON) means the catalog works the same whether the site is opened
+          over <code>https://</code> or directly from disk (<code>file://</code>). If you're
+          contributing or integrating OpenEmbedWorks, here's the schema (v1.0):
         </p>
 
         <div class="code-block">
-{
-  "_schemaVersion": "2.0",
+window.OEW_TOOLS_DATA = {
+  "_schemaVersion": "1.0",
   "categories": [
     { "id": "systems-linux", "label": "Systems and Linux", "order": 1 }
   ],
@@ -476,7 +480,7 @@
       "rating": { "value": 4.5, "count": 18 }
     }
   ]
-}
+};
         </div>
 
         <h3>Field Reference</h3>
@@ -509,15 +513,15 @@
           </li>
 
           <li>
-            <strong>Edit tools.json</strong>
+            <strong>Edit tools-data.js</strong>
             <br/>
-            Add your tool entry using the schema above. Ensure all required fields are populated.
+            Add your tool entry using the schema above (inside the <code>window.OEW_TOOLS_DATA</code> object). Ensure all required fields are populated.
           </li>
 
           <li>
             <strong>Validate your changes</strong>
             <br/>
-            Ensure the JSON is valid (no syntax errors). Test locally if possible.
+            Ensure the JSON object assigned to <code>window.OEW_TOOLS_DATA</code> is valid (no syntax errors). Test locally if possible.
           </li>
 
           <li>

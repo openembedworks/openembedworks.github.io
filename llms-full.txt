@@ -12,9 +12,15 @@ The site helps engineers discover and launch web-based utilities without install
 - General software developers
 
 ## Data contract
-Primary source file: https://openembedworks.github.io/tools.json
+Primary source file: https://openembedworks.github.io/tools-data.js
 
-Schema v2 highlights:
+tools-data.js is a JavaScript file (not raw JSON) that assigns the catalog object to
+`window.OEW_TOOLS_DATA`. This lets the site load it via a `<script>` tag, which works
+identically over https://, from a local dev server, or via file:// (fetch()-based JSON
+loading is blocked for file:// by browsers). To extract raw JSON programmatically,
+strip the leading `window.OEW_TOOLS_DATA = ` assignment and trailing `;`.
+
+Schema v1.0 highlights:
 - _schemaVersion
 - categories[]: id, label, description, order
 - tags[]: id, label
@@ -28,8 +34,9 @@ Schema v2 highlights:
 - Home: https://openembedworks.github.io/
 - Sitemap: https://openembedworks.github.io/sitemap.xml
 - Robots: https://openembedworks.github.io/robots.txt
-- Data feed: https://openembedworks.github.io/tools.json
+- Data feed: https://openembedworks.github.io/tools-data.js
 
 ## Notes
 - Some tool URLs may be placeholders while tools are being published.
-- The catalog page remains functional in file:// mode with embedded fallback data.
+- The catalog page works identically in file:// mode since tools-data.js loads as a
+  <script> tag, not via fetch().
