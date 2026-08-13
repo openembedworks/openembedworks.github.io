@@ -67,6 +67,15 @@ body:
     validations:
       required: false
 
+  - type: input
+    id: logo-url
+    attributes:
+      label: Logo URL (optional)
+      description: "Direct https:// URL to a logo image (PNG/SVG, ideally square, 64×64 px or larger). Leave blank to use the GitHub account avatar."
+      placeholder: "https://example.com/mylogo.png"
+    validations:
+      required: false
+
   - type: dropdown
     id: category
     attributes:

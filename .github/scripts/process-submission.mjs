@@ -57,6 +57,7 @@ const name = textField(sections, 'Tool Name').slice(0, 80);
 const description = textField(sections, 'Short Description').slice(0, 220);
 const url = textField(sections, 'Tool URL');
 const githubRepo = textField(sections, 'GitHub Repository (optional)');
+const logoUrl = textField(sections, 'Logo URL (optional)');
 const categoryLabel = textField(sections, 'Category');
 const tagsRaw = textField(sections, 'Tags (optional)');
 const clientSideOk = allChecked(sections, 'Client-Side Only');
@@ -85,6 +86,15 @@ if (!url) {
 
 if (githubRepo && !/^[\w.-]+\/[\w.-]+$/.test(githubRepo)) {
   errors.push('- **GitHub Repository** must be in `owner/repo` format.');
+}
+
+if (logoUrl) {
+  try {
+    const parsedLogo = new URL(logoUrl);
+    if (parsedLogo.protocol !== 'https:') errors.push('- **Logo URL** must use `https://`.');
+  } catch {
+    errors.push('- **Logo URL** is not a valid URL.');
+  }
 }
 
 const category = (catalog.categories || []).find(
@@ -148,6 +158,7 @@ if (!valid) {
     description,
     url,
     ...(githubRepo ? { githubRepo } : {}),
+    ...(logoUrl ? { logo: logoUrl } : {}),
     rating: { value: 0, count: 0, source: 'community' },
   };
   const toolFile = writeFile('proposed-tool.json', JSON.stringify(proposedTool, null, 2));

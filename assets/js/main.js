@@ -29,7 +29,7 @@
     query: '',
     category: 'all',
     subcategory: 'all',
-    sort: 'rating-desc',
+    sort: 'stars-desc',
     view: 'table',
   };
 
@@ -39,6 +39,7 @@
     'subcategory-asc', 'subcategory-desc',
     'rating-asc', 'rating-desc',
     'stars-asc', 'stars-desc',
+    'publisher-asc', 'publisher-desc',
     'description-asc', 'description-desc',
   ]);
 
@@ -81,6 +82,7 @@
           description: tool.description || '',
           url: tool.url || '#',
           githubRepo: tool.githubRepo || '',
+          logo: tool.logo || '',
           rating: normalizeRating(tool.rating),
         })),
       };
@@ -103,6 +105,7 @@
         description: tool.description || '',
         url: tool.url || '#',
         githubRepo: '',
+        logo: '',
         rating: normalizeRating(tool.rating),
       })),
     };
@@ -250,6 +253,7 @@
       const repoUrl = getRepoURL(tool.githubRepo || '');
       const categoryLabel = getCategoryLabel(tool.category);
       const subcategoryLabel = getPrimarySubcategoryLabel(tool.tags || []);
+      const publisher = getPublisher(tool);
       const stars = tool.rating.stars > 0 ? formatCompact(tool.rating.stars) : '-';
       const toolActionAttrs = toolUrl !== '#'
         ? 'target="_blank" rel="noopener noreferrer"'
@@ -257,22 +261,31 @@
       const repoActionAttrs = repoUrl !== '#'
         ? 'target="_blank" rel="noopener noreferrer"'
         : '';
+      const logoSrc = (tool.logo && sanitizeURL(tool.logo) !== '#')
+        ? sanitizeURL(tool.logo)
+        : (publisher ? `https://github.com/${publisher}.png?size=32` : '');
+      const logoHTML = logoSrc
+        ? `<img class="tool-logo" src="${escapeHTML(logoSrc)}" alt="" aria-hidden="true" width="20" height="20" loading="lazy" onerror="this.style.display='none'">`
+        : '<span class="tool-logo-placeholder" aria-hidden="true"></span>';
       const titleCell = toolUrl !== '#'
-        ? `<a class="tool-title-link" href="${toolUrl}" ${toolActionAttrs}>${escapeHTML(tool.name)}</a>`
-        : escapeHTML(tool.name);
+        ? `${logoHTML}<a class="tool-title-link" href="${toolUrl}" ${toolActionAttrs}>${escapeHTML(tool.name)}</a>`
+        : `${logoHTML}${escapeHTML(tool.name)}`;
       const toolAction = toolUrl !== '#'
         ? `<a class="tool-table-link" href="${toolUrl}" ${toolActionAttrs}>Tool</a>`
         : '<span class="tool-action-muted">-</span>';
       const repoAction = repoUrl !== '#'
         ? `<a class="tool-table-link" href="${repoUrl}" ${repoActionAttrs}>Repo</a>`
         : '<span class="tool-action-muted">-</span>';
+      const publisherCell = publisher
+        ? `<a class="tool-table-link" href="https://github.com/${escapeHTML(publisher)}" target="_blank" rel="noopener noreferrer">${escapeHTML(publisher)}</a>`
+        : '<span class="tool-action-muted">-</span>';
 
       dom.tableBody.insertAdjacentHTML('beforeend', `
         <tr>
-          <td class="cell-tool">${titleCell}</td>
+          <td class="cell-tool"><span class="cell-tool-inner">${titleCell}</span></td>
           <td>${escapeHTML(categoryLabel)}</td>
           <td>${escapeHTML(subcategoryLabel)}</td>
-          <td>${escapeHTML(formatRating(tool.rating))}</td>
+          <td>${publisherCell}</td>
           <td>${escapeHTML(stars)}</td>
           <td class="cell-description">${escapeHTML(tool.description)}</td>
           <td>${toolAction}</td>
@@ -288,6 +301,7 @@
       const repoUrl = getRepoURL(tool.githubRepo || '');
       const categoryLabel = getCategoryLabel(tool.category);
       const subcategoryLabel = getPrimarySubcategoryLabel(tool.tags || []);
+      const publisher = getPublisher(tool);
       const stars = tool.rating.stars > 0 ? `${formatCompact(tool.rating.stars)} stars` : 'No stars yet';
       const toolActionAttrs = toolUrl !== '#'
         ? 'target="_blank" rel="noopener noreferrer"'
@@ -295,18 +309,28 @@
       const repoActionAttrs = repoUrl !== '#'
         ? 'target="_blank" rel="noopener noreferrer"'
         : '';
+      const logoSrc = (tool.logo && sanitizeURL(tool.logo) !== '#')
+        ? sanitizeURL(tool.logo)
+        : (publisher ? `https://github.com/${publisher}.png?size=32` : '');
+      const logoHTML = logoSrc
+        ? `<img class="tool-logo" src="${escapeHTML(logoSrc)}" alt="" aria-hidden="true" width="20" height="20" loading="lazy" onerror="this.style.display='none'">`
+        : '<span class="tool-logo-placeholder" aria-hidden="true"></span>';
       const title = toolUrl !== '#'
-        ? `<a class="tool-title-link" href="${toolUrl}" ${toolActionAttrs}>${escapeHTML(tool.name)}</a>`
-        : escapeHTML(tool.name);
+        ? `${logoHTML}<a class="tool-title-link" href="${toolUrl}" ${toolActionAttrs}>${escapeHTML(tool.name)}</a>`
+        : `${logoHTML}${escapeHTML(tool.name)}`;
       const repoAction = repoUrl !== '#'
         ? `<a class="tool-table-link" href="${repoUrl}" ${repoActionAttrs}>Repo</a>`
         : '<span class="tool-action-muted">No repo</span>';
+      const publisherLine = publisher
+        ? `<p class="tool-tile-meta">by <a class="tool-table-link" href="https://github.com/${escapeHTML(publisher)}" target="_blank" rel="noopener noreferrer">${escapeHTML(publisher)}</a></p>`
+        : '';
 
       return `
         <article class="tool-tile">
           <h3 class="tool-tile-title">${title}</h3>
           <p class="tool-tile-meta">${escapeHTML(categoryLabel)} · ${escapeHTML(subcategoryLabel)}</p>
-          <p class="tool-tile-rating">${escapeHTML(formatRating(tool.rating))} · ${escapeHTML(stars)}</p>
+          ${publisherLine}
+          <p class="tool-tile-rating">${escapeHTML(stars)}</p>
           <p class="tool-tile-desc">${escapeHTML(tool.description)}</p>
           ${repoAction}
         </article>
@@ -439,7 +463,7 @@
         state.query = '';
         state.category = 'all';
         state.subcategory = 'all';
-        state.sort = 'rating-desc';
+          state.sort = 'stars-desc';
         if (dom.queryInput) dom.queryInput.value = '';
         renderSubcategories();
         syncSidebarSelections();
@@ -635,6 +659,11 @@
       if (/^[/#]/.test(url)) return url;
     }
     return '#';
+  }
+
+  function getPublisher(tool) {
+    if (!tool.githubRepo) return '';
+    return String(tool.githubRepo).split('/')[0] || '';
   }
 
   function getRepoURL(repo) {
